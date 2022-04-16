@@ -26,4 +26,4 @@ mongoose.connect(process.env.DB_CONNECTION,
     () => {
         console.log('connected to db');
 });
-app.listen(3000);
+app.listen(5000);
