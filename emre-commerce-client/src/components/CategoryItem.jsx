@@ -1,6 +1,21 @@
 import React from 'react'
 import styled from 'styled-components'
 
+const Button = styled.button`
+    border: none;
+    padding: 10px;
+    background-color: white;
+    color: #524e45;
+    cursor:pointer;
+    font-weight: 600;
+    transition: all 0.5s ease;
+    border-radius: 5%;
+    &:hover{
+        background-color: teal;
+        color:white;
+        transform: scale(1.1)
+    }
+`
 const Container = styled.div`
     flex:1;
     margin: 3px;
@@ -27,14 +42,7 @@ const Title = styled.h1`
     color:white;
     margin-bottom:20px;
 `
-const Button = styled.button`
-    border: none;
-    padding: 10px;
-    background-color: white;
-    color: #524e45;
-    cursor:pointer;
-    font-weight: 600;
-`
+
 const CategoryItem = ({item}) => {
   return (
     <Container>

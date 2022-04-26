@@ -9,6 +9,9 @@ const Container = styled.div`
         display:flex;
         position:relative;
         overflow:hidden;
+        @media (max-width: 768px) {
+            display: none;
+        }
 `
 const ContainerArrowLeft = styled.div`
         width: 50px;
@@ -77,18 +80,18 @@ font-weight: 500;
 letter-spacing: 2;
 `
 const Button = styled.button`
-padding: 10px;
-font-size: 20px;
-background-color: transparent;
-cursor:pointer;
-border-radius: 5px;
-&:hover {
-    transform: scale(1.05);
-    background-color: black;
-    color: white;
-    }
-    transition: all 0.2s cubic-bezier(.08,.52,.52,1)
-`
+    padding: 10px;
+    font-size: 20px;
+    background-color: transparent;
+    cursor:pointer;
+    border-radius: 5px;
+    &:hover {
+        transform: scale(1.05);
+        background-color: black;
+        color: white;
+        }
+        transition: all 0.2s cubic-bezier(.08,.52,.52,1)
+    `
 const Slider = () => {
     const [slideIndex,setSlideIndex] = useState(0);
     const handleClick = (direction) => {

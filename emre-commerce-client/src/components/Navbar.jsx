@@ -26,6 +26,9 @@ const SearchContainer = styled.div`
     margin-left: 25px;
     padding: 5px;
     border-radius: 10px;
+    @media (max-width: 768px) {
+        display: none;
+    }
 `
 const Input = styled.input`
         border:none;
@@ -33,11 +36,14 @@ const Input = styled.input`
 `
 
 const Center = styled.div`flex: 1;
-display:flex;
+    display:flex;
     align-items:center;
     justify-content: center;`
 const Logo = styled.h1`
     font-weight: bold;
+    @media (max-width: 768px) {
+        display: none;
+    }
 `
 
 
@@ -51,6 +57,9 @@ const MenuItem = styled.div`
     font-size: 14px;
     cursor: pointer;
     margin-left: 25px;
+    @media (max-width: 768px) {
+        display: ${(props)=>props.mobile === "true" ? `block` : `none`}
+    }
 `
 
 
@@ -70,13 +79,14 @@ const Navbar = () => {
             </Left>
             <Center><Logo>Emre Commerce.</Logo></Center>
             <Right>
-                <MenuItem>REGISTER</MenuItem>
-                <MenuItem>SIGN IN</MenuItem>
-                <MenuItem>
+                <MenuItem mobile="false">REGISTER</MenuItem>
+                <MenuItem mobile="false">SIGN IN</MenuItem>
+                <MenuItem mobile="false">
                 <Badge badgeContent={2} color="secondary">
                     <ShoppingCartOutlined />
                 </Badge>
                 </MenuItem>
+                <MenuItem mobile="true">mobile</MenuItem>
             </Right>
         </Wrapper>
     </Container>
