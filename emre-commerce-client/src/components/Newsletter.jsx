@@ -17,7 +17,8 @@ const Title = styled.h1`
 const Description = styled.div`
     font-size: 24px;
     font-weight: 300;
-    margin-bottom: 20px;  
+    margin-bottom: 20px;
+    padding: 5px;
 `
 const InputContainer = styled.div`
     width: 50%;

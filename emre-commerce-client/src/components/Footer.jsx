@@ -3,6 +3,9 @@ import React from 'react'
 import styled from 'styled-components'
 const Container = styled.div`
     display:flex;
+    @media (max-width: 768px) {
+        flex-direction: column;
+    }
 `
 const Right = styled.div`
     flex:1;
@@ -102,15 +105,15 @@ const Footer = () => {
             <Right>
                 <Title>Contact</Title>
                 <ContactItem>
-                    <Room style={{marginRight: "10px;"}} />güllük mah uysal sokak no 10 daire 4 eskişehir/tepebaşı
+                    <Room style={{marginRight: "10px;"}} />bağlar mah baysal sokak eskişehir/tepebaşı
                 </ContactItem>
                 <ContactItem>
-                   <Phone style={{marginRight: "10px;"}} /> +90 553 309 55 69
+                   <Phone style={{marginRight: "10px;"}} /> +90 553 675 35 19
                 </ContactItem>
                 <ContactItem>
                     <MailOutline style={{marginRight: "10px;"}} />emrekayacik2634@gmail.com
                 </ContactItem>
-                <Payment src="https://www.vhv.rs/dpng/d/462-4625301_credit-card-icons-png-download-transparent-background-credit.png" />
+                <Payment src="https://www.theorchardcottage.co.nz/wp-content/uploads/2018/09/visa-and-mastercard-logos-logo-visa-png-logo-visa-mastercard-png-visa-logo-white-png-awesome-logos.png" />
             </Right>
         </Container>
     )

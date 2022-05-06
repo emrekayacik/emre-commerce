@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import {Search,ShoppingCartOutlined} from '@material-ui/icons'
 import {Badge} from '@material-ui/core'
+import {Link} from 'react-router-dom'
 const Container = styled.div`
         height:60px;
 `
@@ -77,7 +78,9 @@ const Navbar = () => {
                     <Search style={{color:"gray", fontSize:16}} />
                 </SearchContainer>
             </Left>
-            <Center><Logo>Emre Commerce.</Logo></Center>
+            <Link style={{color:"inherit",textDecoration: "none"}} to="/" >
+                <Center><Logo>Emre Commerce.</Logo></Center>
+            </Link>
             <Right>
                 <MenuItem mobile="false">REGISTER</MenuItem>
                 <MenuItem mobile="false">SIGN IN</MenuItem>

@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import styled from 'styled-components'
 import {ArrowRight,ArrowLeft} from '@material-ui/icons'
 import {sliderItems} from '../data'
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
         width: 100%;
@@ -118,7 +119,7 @@ const Slider = () => {
                 <InfoContainer>
                     <Title>{item.title}</Title>
                     <Description>{item.description}</Description>
-                    <Button>SHOW NOW</Button>
+                    <Link to="products"><Button>SHOW NOW</Button></Link>
                 </InfoContainer>
             </Slide>
         ))}
