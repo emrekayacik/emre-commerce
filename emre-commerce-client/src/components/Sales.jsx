@@ -32,11 +32,11 @@ const ImageContainer = styled.div`
 const Description = styled.p`
 
 `
-const Sales = () => {
+const Sales = ({color,title,text}) => {
   return (
-    <Container>
-            <Title>CURRENT SALES</Title>
-            <Description>Almost before we knew it, we had left the ground.</Description>
+    <Container style={{backgroundColor: color}}>
+            <Title>{title}</Title>
+            <Description>{text}</Description>
     </Container>
   )
 }
