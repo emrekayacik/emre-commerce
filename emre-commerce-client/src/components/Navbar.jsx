@@ -63,8 +63,10 @@ const MenuItem = styled.div`
     }
 `
 
-
-
+const navLink = {
+    color: "inherit",
+    textDecoration: "none"
+}
 const Navbar = () => {
   return (
     <Container>
@@ -78,12 +80,16 @@ const Navbar = () => {
                     <Search style={{color:"gray", fontSize:16}} />
                 </SearchContainer>
             </Left>
-            <Link style={{color:"inherit",textDecoration: "none"}} to="/" >
+            <Link style={navLink} to="/" >
                 <Center><Logo>Emre Commerce.</Logo></Center>
             </Link>
             <Right>
-                <MenuItem mobile="false">REGISTER</MenuItem>
-                <MenuItem mobile="false">SIGN IN</MenuItem>
+                <Link style={navLink} to="/register" >
+                    <MenuItem mobile="false">REGISTER</MenuItem>
+                </Link>
+                <Link style={navLink} to="/login" >
+                    <MenuItem mobile="false">SIGN IN</MenuItem>
+                </Link>
                 <MenuItem mobile="false">
                 <Badge badgeContent={2} color="secondary">
                     <ShoppingCartOutlined />

@@ -1,7 +1,7 @@
 export const sliderItems = [
     {
         id:1,
-        img:"http://nevseoboi.com.ua/uploads/posts/2011-02/1298734049_image_80_www.nevseoboi.com.ua.jpg",
+        img:"https://images.pexels.com/photos/7682596/pexels-photo-7682596.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
         title: "SUMMER SALE",
         description: "İster günlük hayatta, ister özel günlerde giyebileceğiniz kadın giyim modellerini gördünüz mü? Modaya en uygun kadın kıyafetleri için hemen tıklayın!"
     },
