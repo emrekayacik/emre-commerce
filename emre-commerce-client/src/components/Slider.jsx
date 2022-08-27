@@ -3,16 +3,19 @@ import styled from 'styled-components'
 import {ArrowRight,ArrowLeft} from '@material-ui/icons'
 import {sliderItems} from '../data'
 import { Link } from "react-router-dom";
-
+import {mobile} from "../responsive"
 const Container = styled.div`
         width: 100%;
         height: 100vh;
         display:flex;
         position:relative;
         overflow:hidden;
-        @media (max-width: 768px) {
-            display: none;
-        }
+        ${mobile(
+            
+            {display:"none"}
+            
+            
+            )}
 `
 const ContainerArrowLeft = styled.div`
         width: 50px;

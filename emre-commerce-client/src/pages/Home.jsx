@@ -12,9 +12,9 @@ const Home = () => {
     <>
         
         <Slider />
-        <Sales color="grey" title="Categories" text="Almost before we knew it, we had left the ground." />
+        {/* <Sales color="grey" title="Categories" text="Almost before we knew it, we had left the ground." /> */}
         <Categories />
-        <Sales color="teal" title="Current Sales" text="Almost before we knew it, we had left the ground." />
+        {/* <Sales color="teal" title="Current Sales" text="Almost before we knew it, we had left the ground." /> */}
         <Products />
         <Newsletter />
     </>

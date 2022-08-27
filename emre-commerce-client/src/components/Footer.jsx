@@ -1,6 +1,8 @@
 import {Room, Phone,MailOutline,Facebook, Pinterest, Twitter,Instagram } from '@material-ui/icons'
 import React from 'react'
 import styled from 'styled-components'
+import {mobile} from "../responsive"
+
 const Container = styled.div`
     display:flex;
     @media (max-width: 768px) {
@@ -10,6 +12,12 @@ const Container = styled.div`
 const Right = styled.div`
     flex:1;
     padding:20px;
+    ${mobile(
+            
+        {backgroundColor:"#fff8f8"}
+        
+        
+        )}
 `
 const ContactItem = styled.div`
 margin-bottom: 20px;
@@ -25,6 +33,12 @@ const Left = styled.div`
     display:flex;
     flex-direction: column;
     padding: 20px;
+    ${mobile(
+            
+        {justifyContent:"center",alignItems:"center"}
+        
+        
+        )}
 `
 const Center = styled.div`
     flex:1;

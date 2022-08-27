@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import {AddShoppingCartOutlined,Search,FavoriteBorderOutlined} from '@material-ui/icons'
 import {Link} from 'react-router-dom';
+import {mobile} from "../responsive"
+
 const Info = styled.div`
     opacity:0;
     width: 100%;
@@ -30,6 +32,7 @@ const Container = styled.div`
     &:hover ${Info}{
         opacity:1;
     }
+
 `
 const Circle = styled.div`
     width: 200px;
@@ -61,7 +64,7 @@ const Icon = styled.div`
 `
 const Product = ({item}) => {
   return (
-    <Link style={{color:"inherit",textDecoration: "none"}} to="/products/product/1">
+    
         <Container>
         <Circle />
         <Image src={item.img} />
@@ -71,7 +74,7 @@ const Product = ({item}) => {
             <Icon><FavoriteBorderOutlined/></Icon>
         </Info>
     </Container>
-    </Link>
+    
   )
 }
 
