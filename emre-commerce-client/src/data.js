@@ -30,19 +30,19 @@ export const categories = [
         id:1,
         img:"https://images.pexels.com/photos/7533345/pexels-photo-7533345.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
         title: "YOUR DESIGN!",
-        
+        cat: "women"
     },
     {
         id:2,
         img:"https://images.pexels.com/photos/10660920/pexels-photo-10660920.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
         title: "PANTS",
-        
+        cat: "coat"
     },
     {
         id:3,
         img:"https://images.pexels.com/photos/10661059/pexels-photo-10661059.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
         title: "SUMMERWEAR",
-        
+        cat: "jeans"
     }
 ];
 
