@@ -1,7 +1,7 @@
 import { Add, Remove } from '@material-ui/icons'
 import styled from 'styled-components'
 import {mobile} from "../responsive"
-
+import {useSelector} from "react-redux"
 const Container = styled.div`
 
 `
@@ -170,6 +170,8 @@ font-weight: 600;
 `
 
 const Cart = () => {
+  const cart = useSelector(state => state.cart)
+  console.log(cart);
   return (
     <Container>
         <Wrapper>
@@ -189,75 +191,55 @@ const Cart = () => {
           </Top>
           <Bottom>
             <Info>
-              <Product>
+              {cart.products.map(product=> 
+                (
+                  <Product>
                 <ProductDetail>
-                  <Image src="https://www.vintageindustries.nl/download_front/yxfbur1758/_overview_large_/2217_Arrow_Jacket_Dark_tan.png" />
+                  <Image src={product.img} />
                   <Details>
-                    <ProductName><b>Product: </b>MICHAEL JACKSON JACKET</ProductName>
-                    <ProductId><b>Id: </b>357412544</ProductId>
+                    <ProductName><b>Product: </b>{product.title}</ProductName>
+                    <ProductId><b>Id: </b>{product._id}</ProductId>
 
-                    <ProductColor color="#9c784b" />
+                    <ProductColor color={product.color} />
 
-                    <ProductSize><b>Size: </b>44</ProductSize>
+                    <ProductSize><b>Size: </b>{product.size}</ProductSize>
 
                   </Details>
                 </ProductDetail>
                 <PriceDetail>
                   <ProductAmountContainer>
                     <Add />
-                    <ProductAmount>2</ProductAmount>
+                    <ProductAmount>{product.quantity}</ProductAmount>
                     <Remove />
                   </ProductAmountContainer>
-                  <ProductPrice>$30</ProductPrice>
+                  <ProductPrice>${product.price* product.quantity}</ProductPrice>
                 </PriceDetail>
               </Product>
-
-              <Hr />
-
-              <Product>
-                <ProductDetail>
-                  <Image src="https://www.vintageindustries.nl/download_front/qzgvet1531/_overview_large_/30101_Ashore_softshell_jacket_Black_2_.png" />
-                  <Details>
-                    <ProductName><b>Product: </b>BLACK SIN JACKET</ProductName>
-                    <ProductId><b>Id: </b>31584885</ProductId>
-
-                    <ProductColor color="black" />
-
-                    <ProductSize><b>Size: </b>42</ProductSize>
-
-                  </Details>
-                </ProductDetail>
-                <PriceDetail>
-                  <ProductAmountContainer>
-                    <Add />
-                    <ProductAmount>2</ProductAmount>
-                    <Remove />
-                  </ProductAmountContainer>
-                  <ProductPrice>$30</ProductPrice>
-                </PriceDetail>
-              </Product>
+                )
+                
+                )}
             </Info>
             <Summary>
               
               <SummaryTitle>ORDER SUMMARY</SummaryTitle>
               <SummaryItem>
                 <SummaryItemText>Subtotal</SummaryItemText>
-                <SummaryItemPrice>$ 80</SummaryItemPrice>
+                <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
 
               </SummaryItem>
               <SummaryItem>
                 <SummaryItemText>Estimated Shipping</SummaryItemText>
-                <SummaryItemPrice>$ 5.90</SummaryItemPrice>
+                <SummaryItemPrice>$ -0</SummaryItemPrice>
 
               </SummaryItem>
               <SummaryItem>
                 <SummaryItemText>Shipping Discount</SummaryItemText>
-                <SummaryItemPrice type="discount">$ -5.90</SummaryItemPrice>
+                <SummaryItemPrice type="discount">$ -0</SummaryItemPrice>
 
               </SummaryItem>
               <SummaryItem type="total">
                 <SummaryItemText>Total</SummaryItemText>
-                <SummaryItemPrice>$ 80</SummaryItemPrice>
+                <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
 
               </SummaryItem>
               <SummaryButton>CHECKOUT NOW</SummaryButton>

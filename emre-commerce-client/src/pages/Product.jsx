@@ -2,6 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 import {Add,Remove} from '@material-ui/icons';
 import {mobile} from "../responsive"
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import {publicRequest} from "../RequestMethods";
+import { addProduct } from '../redux/cartRedux';
+import { useDispatch } from 'react-redux';
 
 const Container = styled.div`
     display:flex;
@@ -153,51 +158,84 @@ const OldPrice = styled.span`
     text-decoration: line-through;
 `
 const Product = () => {
-    return (
+    const location = useLocation();
+    const id = location.pathname.split("/")[2];
+
+    const [product,setProduct] = useState({});
+    const [quantity,setQuantity] = useState(1);
+    const [color,setColor] = useState("");
+    const [size,setSize] = useState("S");
+    const dispatch = useDispatch();
+
+    useEffect(()=>{
+        const getProduct = async () => {
+            try{
+                const res = await publicRequest.get(`/products/find/${id}`)
+                setProduct(res.data);
+            }catch{
+
+            }
+        }
+        getProduct();
+    },[id])
+    
+
+    const handleQuantity = (type) => {
+        if(type==="i"){
+            setQuantity(quantity+1);
+        }else{
+            quantity > 1 && setQuantity(quantity-1)
+        }
+    }
+
+    const handleClick = () => {
+        //update cart
+
+        dispatch(addProduct({...product, quantity,color,size}));
+    }   
+     return (
         <Container>
             <Wrapper>
                 <ImgContainer>
-                    <Image src="https://www.vintageindustries.nl/download_front/syinqx1484/_overview_large_/2109_Grafton_anorak_Black_2_.png" />
+                    <Image src={product.img} />
                 </ImgContainer>
                 <InfoContainer>
                     <Title>
-                        Denim Jacket
+                        {product.title}
                     </Title>
                     <Description>
-                        Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC.
+                        {product.desc}
                     </Description>
-                    <OldPrice>
-                        $60
-                    </OldPrice>
+                    
                     <Price>
-                        $25
+                        ${product.price}
                     </Price>
                     
                     <FilterContainer>
                         <Filter>
                             <FilterTitle>Color</FilterTitle>
-                            <FilterColor color="black" />
-                            <FilterColor color="darkblue" />
-                            <FilterColor color="gray" />
+                            {product.color?.map(x=>{
+                             return <FilterColor onClick={() => setColor(x)} color={x} key={x} />
+                        })}
+                            
                         </Filter>
                         <Filter>
                             <FilterTitle>Size</FilterTitle>
-                            <FilterSize>
-                                <FilterSizeOption>XS</FilterSizeOption>
-                                <FilterSizeOption>S</FilterSizeOption>
-                                <FilterSizeOption>M</FilterSizeOption>
-                                <FilterSizeOption>L</FilterSizeOption>
-                                <FilterSizeOption>XL</FilterSizeOption>
+                            <FilterSize onChange={(e)=>setSize(e.target.value)}>
+                                {product.size?.map(x=> {
+                                    return <FilterSizeOption key={x}>{x}</FilterSizeOption>
+                                })}
+                                
                             </FilterSize>
                         </Filter>
                     </FilterContainer>
                     <AddContainer>
                         <AmountContainer>
-                            <BtnAmount><Remove /></BtnAmount>
-                            <Amount>1</Amount>
-                            <BtnAmount><Add /></BtnAmount>
+                            <BtnAmount><Remove onClick={()=>handleQuantity("d")} /></BtnAmount>
+                            <Amount>{quantity}</Amount>
+                            <BtnAmount><Add onClick={()=>handleQuantity("i")} /></BtnAmount>
                         </AmountContainer>
-                        <Button>Add To Cart</Button>
+                        <Button onClick={handleClick}>Add To Cart</Button>
                     </AddContainer>
                 </InfoContainer>
             </Wrapper>
