@@ -2,6 +2,12 @@ import { Add, Remove } from '@material-ui/icons'
 import styled from 'styled-components'
 import {mobile} from "../responsive"
 import {useSelector} from "react-redux"
+import StripeCheckout from "react-stripe-checkout";
+import {useState,useEffect} from "react"
+import {userRequest} from "../RequestMethods"
+import { useNavigate } from 'react-router-dom';
+
+
 const Container = styled.div`
 
 `
@@ -167,11 +173,36 @@ padding 10px;
 background-color: black;
 color: white;
 font-weight: 600;
+cursor: pointer;
 `
 
 const Cart = () => {
-  const cart = useSelector(state => state.cart)
-  console.log(cart);
+const cart = useSelector(state => state.cart)
+
+const KEY = process.env.REACT_APP_STRIPE;
+
+const [stripeToken,setStripeToken] = useState(null);
+const history = useNavigate();
+  const onToken = (token) => {
+    setStripeToken(token);
+  }
+  
+  useEffect(()=>{
+    const makeRequest = async()=>{
+      try{
+        const res = await userRequest.post("/checkout/payment",{
+          tokenId: stripeToken.id,
+          amount: cart.total*100
+        });
+        history("/success")
+      }catch{
+
+      }
+    }
+    stripeToken && cart.total>=1 && makeRequest();
+  },[stripeToken,cart.total,history])
+  
+  
   return (
     <Container>
         <Wrapper>
@@ -242,7 +273,17 @@ const Cart = () => {
                 <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
 
               </SummaryItem>
-              <SummaryButton>CHECKOUT NOW</SummaryButton>
+              <StripeCheckout 
+              name='Emre Shop'
+              image='https://avatars.githubusercontent.com/u/73127270?s=400&u=129255f70080e16185ee9f42f8251e5e4423aaf4&v=4'
+              billingAddress
+              shippingAddress
+              description={`Your total is $${cart.total}`}
+              amount={cart.total*100}
+              token={onToken}
+              stripeKey={KEY}>
+                <SummaryButton>CHECKOUT NOW</SummaryButton>
+              </StripeCheckout>
               
             </Summary>
           </Bottom>
